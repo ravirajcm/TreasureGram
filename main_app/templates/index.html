@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="">
+        {% for treasure in treasures %}
+            <div class="treasure panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ treasure.name }}</h3>
+                    by: <a class="panel-username"
+                           href="/user/{{ treasure.user.username }}">{{ treasure.user.username }}</a>
+                </div>
+                <div class="panel-body">
+                    <a href="/{{ treasure.id }}">
+                        <p>{{ treasure.name }}</p>
+                        {% if treasure.value > 0 %}
+                            <p>{{ treasure.value }}</p>
+                        {% else %}
+                            <p>Unknown</p>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="treasure panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add Treasure</h3>
+        </div>
+        <div class="panel-body">
+            <form enctype="multipart/form-data" action="post_url/" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

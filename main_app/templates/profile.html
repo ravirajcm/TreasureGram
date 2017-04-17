@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h1>{{ username }}</h1>
+    <div class="row">
+        {% for treasure in treasures %}
+            <div class="col-md-4">
+                <a href="/{{ treasure.id }}">
+                    <p>{{ treasure.name }}</p>
+                    {% if treasure.value > 0 %}
+                        <p>{{ treasure.value }}</p>
+                    {% else %}
+                        <p>Unknown</p>
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

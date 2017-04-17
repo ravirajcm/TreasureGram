@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h1>{{ treasure.name }}</h1>
+    <p>{{ treasure.material }}</p>
+    {% if treasure.value > 0 %}
+        <p>{{ treasure.value }}</p>
+    {% else %}
+        <p>Unknown</p>
+    {% endif %}
+    <p>{{ treasure.location }}</p>
+    <img src="{{ treasure.image.url }}"/>
+{% endblock %}
